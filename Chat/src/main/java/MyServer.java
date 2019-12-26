@@ -11,11 +11,7 @@ public class MyServer implements Observable {
     public final static int PORT = 8080;
     private volatile static List<Observer> observerList = new ArrayList<>();
 
-    public static void main(String[] args) {
-        start();
-    }
-
-    private static void start() {
+    public void start() {
         System.out.println("======= SERVER START =====");
         try {
             new Thread(() -> {
@@ -38,7 +34,7 @@ public class MyServer implements Observable {
             ServerSocket serverSocket = new ServerSocket(PORT);
             while (true) {
                 Socket socket = serverSocket.accept();
-                ClientEntity clientEntity = new ClientEntity(new Client(), socket);
+                ClientEntity clientEntity = new ClientEntity(new Client(), socket, this);
                 new Thread(clientEntity).start();
                 observerList.add(clientEntity);
             }
