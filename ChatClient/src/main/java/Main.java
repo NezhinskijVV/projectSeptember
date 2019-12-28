@@ -17,6 +17,7 @@ public class Main {
             PrintWriter printWriter = null;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
+
             while (true) {
                 if (socket == null) {
                     log.info("Start");
